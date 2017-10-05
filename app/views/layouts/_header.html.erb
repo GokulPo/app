@@ -1,0 +1,14 @@
+<div class="nav">
+  <p><%= link_to 'SimpleApp',root_path %></p>
+  <% if current_user.present? %>
+  <ul>
+   <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Account</a>
+    <div class="dropdown-content">
+      <%= link_to "Profile", user_path(current_user.id) %>
+      <%= link_to "Logout", destroy_user_session_path, :method =>'DELETE' %>
+    </div>
+   </li>
+  </ul>
+  <% end %>
+</div>

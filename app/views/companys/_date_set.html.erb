@@ -1,0 +1,15 @@
+<div class='input-group date' id='datetimepicker9'>
+      <%= f.text_field :exp, autofocus: true,:placeholder=>'Select Expiry', :class=>"form-control" %>
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar">
+        </span>
+      </span>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker9').datetimepicker({
+                viewMode: 'years'
+            });
+        });
+    </script>
+</div>

@@ -1,0 +1,69 @@
+
+<!-- <div class="nav">
+    <p><%= link_to 'SimpleApp',root_path %></p>
+    <ul>
+     <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Account</a>
+      <div class="dropdown-content">
+        <%= link_to "Profile", user_path(current_user) %>
+        <%= link_to "Logout", destroy_user_session_path, :method =>'DELETE' %>
+      </div>
+     </li>
+    </ul>
+  </div>
+</div> -->
+
+  <div class="companyHead">
+    <h2 ><%= @company.name %></h2>
+  </div>
+  <div class="container1">
+    <ul class="tabs">
+      <li class="tab-link current" data-tab="tab-1">Members</li>
+      <li class="tab-link" data-tab="tab-2">Task</li>
+    </ul>
+
+
+    <div id="tab-1" class="tab-content current">
+      <div class="tclass" id ="members">
+        <%= render 'member' %>
+      </div>
+
+
+
+      <% if current_user.admin? %>
+        <div class="addOrg ">
+          <%= render 'create_user' %>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div id="tab-2" class="tab-content">
+      <div class="taskDiv">
+        <div class="tclass">
+          <% if current_user.admin? %>
+            <%= render 'task' %>
+          <% else %>
+            <%= render 'user_task' %>
+            <%= render 'completed_tasks' %>
+          <% end %>
+        </div>
+
+
+      <% if current_user.admin? %>
+        <div class="addOrg" id ="">
+          <%= render 'create_task' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="linclass">
+        <%= link_to "Edit Team",edit_company_path(@company)%>
+        <%= link_to "Back", root_path %>
+  </div>
+
+
+

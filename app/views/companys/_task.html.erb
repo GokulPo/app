@@ -1,0 +1,25 @@
+<table >
+  <tr>
+  <caption>Tasks of <%= @company.name %></caption>
+
+    <th>Task Name</th>
+    <th>Assigned to</th>
+    <th>Status</th>
+    <th>Alloted Time</th>
+    <% if current_user.admin? %>
+      <th>Action</th>
+    <% end %>
+  </tr>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.name %></td>
+      <td><%= user_name(task.user_id) %></td>
+      <td><%= task.status %></td>
+      <td><%= time_left(task.expiry) %></td>
+      <% if current_user.admin? %>
+      <td><%= link_to " Delete", task_path(task.id,company_id: @company.id), method: :delete,data: { confirm: "You sure?" }%></td>
+      <% end %>
+
+    </tr>
+  <% end %>
+</table>
