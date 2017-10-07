@@ -5,13 +5,9 @@
       <p class="title"><%= f.name %></p>
       <p>Members <%= f.maxcount %></p>
       <p class="linkcolor"><%= link_to "View", company_path(f) %></p>
-
-     <!--  <p class="linkcolor" ><%#= link_to "Delete", company_path(f), method: :delete, data: { confirm: "You sure?" , remote: true} %></p> -->
-      <!-- Button trigger modal -->
-     <!--  <button type="button" class="btn btn-danger " data-toggle="modal" data-target="#myModal">
-      Delete
-      </button> -->
-      <p class="linkcolor"><%= link_to "Delete",del_modal_company_path(f.id),  'data-toggle'=>"modal",remote: true%></p>
+      <% if current_user.admin? %>
+        <p class="linkcolor"><%= link_to "Delete",del_modal_company_path(f.id),  'data-toggle'=>"modal",remote: true%></p>
+      <% end %>
 
     </div>
     <% end %>

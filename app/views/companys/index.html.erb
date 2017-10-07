@@ -1,18 +1,4 @@
 
-
-<!-- <div class="nav">
-  <p><%= link_to 'SimpleApp',root_path %></p>
-  <ul>
-   <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Account</a>
-    <div class="dropdown-content">
-      <%= link_to "Profile", user_path(current_user) %>
-      <%= link_to "Logout", destroy_user_session_path, :method =>'DELETE' %>
-    </div>
-   </li>
-  </ul>
-</div> -->
-
 <div class="deleteRender">
   <%#= render 'delete_company_modal' %>
 </div>
@@ -32,13 +18,7 @@
     <div class="addOrg ">
       <% if current_user.admin? %>
 
-        <%= form_for :company,:url=>{:controller=>"companys",:action=>"create"},html: {id: "TeamForm"}, remote: true do |f|%>
-          <%= f.text_field :name, autofocus: true,:placeholder=>'Team Name' %>
-          <%= f.number_field :maxcount, autofocus: true,:placeholder=>'No. of Members',:max=> 50 %>
-          <%= f.label :avatar, "Image" %>
-          <%= f.file_field :avatar %>
-          <%= f.submit "Create Team" %>
-        <% end %>
+      <%= render 'create_company',:resource=>@company %>
       <% end %>
     </div>
   </div>

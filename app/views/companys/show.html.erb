@@ -1,18 +1,4 @@
 
-<!-- <div class="nav">
-    <p><%= link_to 'SimpleApp',root_path %></p>
-    <ul>
-     <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">Account</a>
-      <div class="dropdown-content">
-        <%= link_to "Profile", user_path(current_user) %>
-        <%= link_to "Logout", destroy_user_session_path, :method =>'DELETE' %>
-      </div>
-     </li>
-    </ul>
-  </div>
-</div> -->
-
   <div class="companyHead">
     <h2 ><%= @company.name %></h2>
   </div>
@@ -32,11 +18,10 @@
 
       <% if current_user.admin? %>
         <div class="addOrg ">
-          <%= render 'create_user' %>
+          <%= render 'create_user', :resources => @user %>
         </div>
       <% end %>
     </div>
-
 
     <div id="tab-2" class="tab-content">
       <div class="taskDiv">

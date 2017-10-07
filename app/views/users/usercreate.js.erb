@@ -1,4 +1,8 @@
-
-$('#members').html("<%= j render partial:'companys/member' %>");
-$('.flashM').html("<%= j render partial:'layouts/flash' %>");
-$('#createForm')[0].reset();
+<% if @user.errors.any? %>
+  $('.user_create_error_div').html("<%= j render partial:'companys/user_create_error' %>");
+  $('.flashM').html("<%= j render partial:'layouts/flash' %>");
+<% else %>
+  $('#members').html("<%= j render partial:'companys/member' %>");
+  $('.flashM').html("<%= j render partial:'layouts/flash' %>");
+  $('#createForm')[0].reset();
+<% end %>

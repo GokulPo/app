@@ -25,19 +25,15 @@ class UsersController < ApplicationController
     if @company.maxcount.to_i > @company.users.count
       respond_to do |format|
         if @user.save
-            @company.users << @user
-            @members=@company.users
-            ExampleMailer.sample_email(@user,@pwd).deliver
-            flash[:success] = "User created"
-            format.js   { }
+          @company.users << @user
+          @members=@company.users
+          ExampleMailer.sample_email(@user,@pwd).deliver
+          flash[:success] = "User created"
+          format.js
         else
-          flash.now[:alert] = "User not created"
-          render 'new'
+          flash.now[:danger] = "User not created"
+          format.js
         end
-      end
-    else
-      respond_to do |format|
-        format.js
       end
     end
   end

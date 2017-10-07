@@ -1,0 +1,11 @@
+        <%= form_for @company,:url=>{:controller=>"companys",:action=>"create"},html: {id: "TeamForm"}, remote: true, validate: true do |f|%>
+          <div class="eroor_user">
+          <%= render "company_create_error" %>
+          </div>
+
+          <%= f.text_field :name, autofocus: true, :placeholder=>'Team Name' %>
+          <%= f.number_field :maxcount, autofocus: true,:placeholder=>'No. of Members',min: '1' ,:max=> 50 %>
+          <%= f.label :avatar, "Image" %>
+          <%= f.file_field :avatar %>
+          <%= f.submit "Create Team" %>
+        <% end %>

@@ -9,12 +9,12 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//= require jquery
-//= require jquery-ui/widgets/datepicker
 //= require rails-ujs
+//= require jquery
 //= require bootstrap
-
-//= require_tree
+//= require jquery-ui/widgets/datepicker
+//= require rails.validations
+//= require_tree .
 $(document).ready( function(){
       $( "#datepicker" ).datepicker({
         changeMonth: true,
@@ -34,13 +34,6 @@ $(document).ready( function(){
           $(this).addClass('current');
           $("#"+tab_id).addClass('current');
         });
-      $('#createForm').validate({
-          rules: {
-          email: {
-            required: true,
-            email:true,
-          }
-          }
-      });
+
 
 });

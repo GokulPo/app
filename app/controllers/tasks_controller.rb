@@ -17,16 +17,21 @@ class TasksController < ApplicationController
     @task.expiry = Time.now + day.to_i.days + hour.to_i.hours + minute.to_i.minutes
 
     @company=Company.find(params[:task][:company_id])
-    if @task.save!
-      @company.tasks << @task
-      flash[:success] = "Team Created"
-      redirect_to companys_path
-    else
-      flash[:alert] = "Task not created."
-      redirect_to companys_path
+    @tasks = @company.tasks
+
+    respond_to do |format|
+      if @task.save
+        @company.tasks << @task
+        flash.now[:success] = "Task Created"
+        format.js {}
+      else
+        flash.now[:danger] = "Task not created."
+        format.js {}
+      end
     end
 
   end
+
 
   def show
     @company = Company.find(params[:id])
@@ -35,8 +40,10 @@ class TasksController < ApplicationController
   def destroy
     @company = Company.find(params[:company_id])
     @task = Task.find(params[:id])
-    @task.destroy
-    redirect_to companys_path
+    respond_to do |format|
+      @task.destroy
+      format.js
+    end
   end
 
   def complete_task

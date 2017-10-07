@@ -5,6 +5,8 @@ class CompanysController < ApplicationController
   end
 
   def index
+    @company = Company.new
+    @user = User.new
     if current_user.admin?
       @companies = Company.all
     else
@@ -29,9 +31,12 @@ class CompanysController < ApplicationController
   end
 
   def show
+    @user = User.new
+    @task = Task.new
     @company = Company.find(params[:id])
+    authorize @company
     @members=@company.users
-    if current_user.admin?
+        if current_user.admin?
       @tasks = @company.tasks
     else
       @tasks = @company.tasks.where(user_id: current_user.id)
@@ -43,6 +48,7 @@ class CompanysController < ApplicationController
     @members=@company.users
     respond_to do |format|
       @company.users.delete(params[:user_id])
+      flash.now[:success] = "Successfully!! removed"
       format.js {}
     end
   end
