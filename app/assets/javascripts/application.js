@@ -9,9 +9,31 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
+//= require rails-ujs
 //= require jquery
 //= require bootstrap
-//= require rails-ujs
-//= require turbolinks
+//= require jquery-ui/widgets/datepicker
+//= require rails.validations
 //= require_tree .
+$(document).ready( function(){
+      $( "#datepicker" ).datepicker({
+        changeMonth: true,
+        changeYear: true,
+         todayHighlight: true,
+        // orientation: 'auto top',
+         dateFormat: 'dd-M-yy',
+         yearRange: "-100:+0",
+      });
+
+      $('ul.tabs li').click(function(){
+          var tab_id = $(this).attr('data-tab');
+
+          $('ul.tabs li').removeClass('current');
+          $('.tab-content').removeClass('current');
+
+          $(this).addClass('current');
+          $("#"+tab_id).addClass('current');
+        });
+
+
+});

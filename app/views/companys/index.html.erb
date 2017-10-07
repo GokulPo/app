@@ -1,0 +1,25 @@
+
+<div class="deleteRender">
+  <%#= render 'delete_company_modal' %>
+</div>
+
+<div class="container">
+  <div class="container1">
+    <div>
+      <% if current_user.admin? %>
+         <h3>Admin Home </h3>
+      <% end %>
+    </div>
+    <div class="bclass">
+        <%= render 'companys' %>
+    </div>
+
+
+    <div class="addOrg ">
+      <% if current_user.admin? %>
+
+      <%= render 'create_company',:resource=>@company %>
+      <% end %>
+    </div>
+  </div>
+</div>

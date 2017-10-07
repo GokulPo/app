@@ -1,0 +1,9 @@
+<% if @task.errors.any? %>
+  $('.task_error_div').html("<%= j render partial:'tasks/task_error' %>");
+  $('.flashM').html("<%= j render partial:'layouts/flash' %>");
+  $('.addOrg')[0].reset();
+<% else %>
+  $('.tclass').html("<%= j render partial:'companys/task' %>");
+  $('.flashM').html("<%= j render partial:'layouts/flash' %>");
+  $('.addOrg')[0].reset();
+<% end %>

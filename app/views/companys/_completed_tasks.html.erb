@@ -1,0 +1,22 @@
+<table >
+  <tr>
+  <caption>Tasks of <%= @company.name %> Completed Tasks</caption>
+
+    <th>Task Name</th>
+    <th>Assigned to</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  <% @tasks.each do |task| %>
+  <% if task.status == true %>
+    <tr>
+      <td><%= task.name %></td>
+      <td><%= user_name(task.user_id) %></td>
+      <td><%= task.status %></td>
+      <td><div class=" bdecration btn btn-default">
+        <%= link_to " incomplete" ,incomplete_task_task_path(id: task.id,company_id: @company.id), :method => 'post',remote: true %>
+        </div>
+    </tr>
+  <% end %>
+  <% end %>
+</table>

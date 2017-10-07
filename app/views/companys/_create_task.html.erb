@@ -1,0 +1,15 @@
+
+<%= form_for :task,:url=>{:controller=>"tasks",:action=>"create"},html: {id: ""}, remote: true do |f|%>
+  <div class="task_error_div">
+    <%= render 'tasks/task_error' %>
+  </div>
+  <%= f.text_field :name, autofocus: true,:placeholder=>'Task Name' %>
+  <%= f.select :user_id, @members.all.collect {|p| [p.email, p.id]}%>
+  <%= f.label :'Set Task Time' %>
+  <%= f.number_field :day, autofocus: true, :placeholder=>'Day', min: '0' %>
+  <%= f.number_field :hour, autofocus: true, :placeholder=>'Hour', min: '0' %>
+  <%= f.number_field :minute, autofocus: true, :placeholder=>'Minute', min: '0' %>
+  <%= f.hidden_field :status, :value => "false" %>
+  <%= f.hidden_field :company_id, :value => @company.id %>
+  <%= f.submit "Create Task" %>
+<% end %>

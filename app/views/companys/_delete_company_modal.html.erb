@@ -1,0 +1,42 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Are you ABSOLUTELY sure?</h4>
+      </div>
+      <div class="modal-body">
+     <!--  <label >Please type in the name of the company to confirm.   </label>
+      <input type="text"> -->
+       <input type="hidden" id="getName" value="<%= @company.name %>">
+       <label > Enter company name </label>
+      <input type="text" onkeyup="getFieldName()" id="fieldid">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= link_to 'Delete',company_path(@company.id),{ :class =>'btn btn-danger',
+        method: :delete, remote: true, id: 'del_link'}%>
+        <!-- <button type="button" class="btn btn-primary">Delete</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+document.getElementById("del_link").disabled = true;
+link=document.getElementById("del_link").href;
+function getFieldName(){
+
+
+
+  if(document.getElementById('fieldid').value == document.getElementById('getName').value){
+    document.getElementById("del_link").disabled = false;
+    document.getElementById("del_link").setAttribute("href",link);
+  }
+  else
+  {
+    document.getElementById("del_link").disabled = true;
+    document.getElementById("del_link").removeAttribute("href");
+  }
+}
+</script>

@@ -1,32 +1,31 @@
-<div class="nav">
 
-<ul>
 
-  <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Account</a>
-    <div class="dropdown-content">
-      <%= link_to 'Profile', user_path(@user) %>
-      <%= link_to "Logout", destroy_user_session_path, :method =>'DELETE' %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="profileDiv">
+      <%= image_tag @user.avatar.url(:medium),width:'300px'%>
+      <%#= @user.name %>
+        <p>
+          Name : <%= @user.firstname %>
+        <br><br>
+          Email : <%= @user.email %>
+        </p>
+        <br><br>
+          Date of Birth : <%= @user.dob.strftime("%d-%m-%Y") %>
+        </p>
     </div>
-  </li>
-</ul>
-</div>
-<div>
-  <%= image_tag @user.avatar.url(:medium),width:'300px'%>
-  <%#= @user.name %>
-  <p>
-  Name : <%= @user.name %>
-  <br><br>
-  Age : <%= @user.age %>
-  <br><br>
-  Email : <%= @user.email %>
-  </p>
-  <p>
-  <div>
-    <%= link_to "Edit Profile",edit_user_registration_path %>
   </div>
 
-  <div>
-    <%= link_to "Change Password",change_password_registration_path %>
+  <div class="col-md-3">
+    <div class="extendaddOrg">
+      <%= link_to "Edit Profile",edit_user_registration_path %>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="extendaddOrg">
+      <%= link_to "Change Password",change_password_registration_path %>
+    </div>
   </div>
 </div>
+

@@ -1,0 +1,13 @@
+
+    <% @companies.each do |f| %>
+    <div class="card">
+      <%= image_tag f.avatar.url(:medium),width:'100%',height: '150px;' %>
+      <p class="title"><%= f.name %></p>
+      <p>Members <%= f.maxcount %></p>
+      <p class="linkcolor"><%= link_to "View", company_path(f) %></p>
+      <% if current_user.admin? %>
+        <p class="linkcolor"><%= link_to "Delete",del_modal_company_path(f.id),  'data-toggle'=>"modal",remote: true%></p>
+      <% end %>
+
+    </div>
+    <% end %>
